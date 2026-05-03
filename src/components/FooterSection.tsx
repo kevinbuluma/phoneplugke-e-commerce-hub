@@ -92,8 +92,8 @@ const Footer = () => {
             </div>
 
             <div className="flex items-center gap-4">
-              <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="p-2 rounded-xl hover:bg-muted text-muted-foreground hover:text-primary transition-colors">
-                <Instagram className="w-5 h-5" />
+              <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="p-2 rounded-xl hover:bg-muted text-muted-foreground hover:text-primary transition-colors text-sm font-bold">
+                IG
               </a>
               <a href="https://tiktok.com" target="_blank" rel="noopener noreferrer" className="p-2 rounded-xl hover:bg-muted text-muted-foreground hover:text-primary transition-colors text-sm font-bold">
                 TikTok
