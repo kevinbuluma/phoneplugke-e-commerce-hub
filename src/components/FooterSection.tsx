@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { Instagram, Star } from "lucide-react";
+import { Star } from "lucide-react";
 
 const reviews = [
   { name: "James M.", rating: 5, text: "Got my iPhone 15 Pro Max delivered same day in Nairobi. Legit plug! 🔥", date: "2 days ago" },
