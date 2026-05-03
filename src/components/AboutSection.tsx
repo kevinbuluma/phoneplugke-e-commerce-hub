@@ -3,7 +3,7 @@ import { MapPin, Truck, Shield, Star } from "lucide-react";
 
 const AboutSection = () => {
   const features = [
-    { icon: <MapPin className="w-6 h-6" />, title: "Nairobi Based", desc: "Located in the heart of Nairobi CBD" },
+    { icon: <MapPin className="w-6 h-6" />, title: "Nairobi Based", desc: "Located at The Baazar, Moi Avenue" },
     { icon: <Truck className="w-6 h-6" />, title: "Fast Delivery", desc: "Same-day delivery within Nairobi" },
     { icon: <Shield className="w-6 h-6" />, title: "Warranty", desc: "All products come with warranty" },
     { icon: <Star className="w-6 h-6" />, title: "Trusted", desc: "5,000+ happy customers across Kenya" },
@@ -30,8 +30,8 @@ const AboutSection = () => {
               </p>
               <p className="text-muted-foreground leading-relaxed">
                 With fast delivery across Kenya and a dedicated support team, shopping with
-                PhonePlugKE is always a smooth experience. Visit us in Nairobi CBD or order
-                online — we've got you covered! 🇰🇪
+                PhonePlugKE is always a smooth experience. Visit us at The Baazar, Moi Avenue
+                or order online — we've got you covered! 🇰🇪
               </p>
             </motion.div>
 

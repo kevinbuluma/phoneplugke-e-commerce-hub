@@ -49,8 +49,8 @@ const ContactSection = () => {
               <div className="glass-card-subtle p-4 flex-1 flex items-center gap-3">
                 <MapPin className="w-5 h-5 text-primary shrink-0" />
                 <div>
-                  <p className="text-sm font-semibold text-foreground">Nairobi CBD</p>
-                  <p className="text-xs text-muted-foreground">Kenyatta Avenue</p>
+                  <p className="text-sm font-semibold text-foreground">The Baazar, Moi Avenue</p>
+                  <p className="text-xs text-muted-foreground">Floor M4, Suite 6, Room 1</p>
                 </div>
               </div>
               <a

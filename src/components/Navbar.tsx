@@ -1,18 +1,42 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { ShoppingCart, Menu, X, Sun, Moon } from "lucide-react";
+import { ShoppingCart, Menu, X, Sun, Moon, Award } from "lucide-react";
 import { useCart } from "@/context/CartContext";
 import { useTheme } from "@/context/ThemeContext";
+import { useLoyalty } from "@/context/LoyaltyContext";
+import { useNavigate, useLocation } from "react-router-dom";
 
-const navLinks = ["Home", "Shop", "Deals", "About", "Contact"];
+const navLinks = [
+  { name: "Home", path: "/" },
+  { name: "Shop", path: "/shop" },
+  { name: "Deals", path: "/#deals" },
+  { name: "About", path: "/about" },
+  { name: "Contact", path: "/contact" }
+];
 
 const Navbar = () => {
   const { totalItems, setIsOpen } = useCart();
   const { isDark, toggle } = useTheme();
+  const { points } = useLoyalty();
   const [mobileOpen, setMobileOpen] = useState(false);
+  const navigate = useNavigate();
+  const location = useLocation();
 
-  const scrollTo = (id: string) => {
-    document.getElementById(id.toLowerCase())?.scrollIntoView({ behavior: "smooth" });
+  const handleNav = (path: string) => {
+    if (path.startsWith("/#")) {
+      const id = path.substring(2);
+      if (location.pathname !== "/") {
+        navigate("/");
+        setTimeout(() => {
+          document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
+        }, 100);
+      } else {
+        document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
+      }
+    } else {
+      navigate(path);
+      window.scrollTo(0, 0);
+    }
     setMobileOpen(false);
   };
 
@@ -23,7 +47,7 @@ const Navbar = () => {
       className="fixed top-0 left-0 right-0 z-50 bg-background/70 backdrop-blur-xl border-b border-glass"
     >
       <div className="container mx-auto px-4 h-16 flex items-center justify-between">
-        <button onClick={() => scrollTo("home")} className="font-display text-xl font-bold">
+        <button onClick={() => handleNav("/")} className="font-display text-xl font-bold">
           <span className="gradient-text">PhonePlug</span>
           <span className="text-foreground">KE</span>
         </button>
@@ -31,16 +55,21 @@ const Navbar = () => {
         <div className="hidden md:flex items-center gap-8">
           {navLinks.map(link => (
             <button
-              key={link}
-              onClick={() => scrollTo(link === "Shop" ? "products" : link.toLowerCase())}
+              key={link.name}
+              onClick={() => handleNav(link.path)}
               className="text-sm font-medium text-muted-foreground hover:text-primary transition-colors"
             >
-              {link}
+              {link.name}
             </button>
           ))}
         </div>
 
         <div className="flex items-center gap-3">
+          <div className="hidden sm:flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-primary/10 border border-primary/20 text-primary mr-2" title="Loyalty Points">
+            <Award className="w-4 h-4" />
+            <span className="text-sm font-bold">{points} pts</span>
+          </div>
+
           <button
             onClick={toggle}
             className="relative w-12 h-6 rounded-full bg-muted border border-glass flex items-center transition-colors"
@@ -88,11 +117,11 @@ const Navbar = () => {
             <div className="px-4 py-4 flex flex-col gap-3">
               {navLinks.map(link => (
                 <button
-                  key={link}
-                  onClick={() => scrollTo(link === "Shop" ? "products" : link.toLowerCase())}
+                  key={link.name}
+                  onClick={() => handleNav(link.path)}
                   className="text-left py-2 text-muted-foreground hover:text-primary transition-colors"
                 >
-                  {link}
+                  {link.name}
                 </button>
               ))}
             </div>

@@ -1,13 +1,26 @@
 import { motion } from "framer-motion";
 import { ShoppingBag, Zap } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 
 const HeroSection = () => {
+  const navigate = useNavigate();
+
   const scrollToProducts = () => {
-    document.getElementById("products")?.scrollIntoView({ behavior: "smooth" });
+    navigate("/shop");
+    window.scrollTo(0, 0);
   };
 
   return (
     <section id="home" className="relative min-h-screen flex items-center justify-center overflow-hidden pt-16">
+      {/* Background Image */}
+      <div className="absolute inset-0 z-0">
+        <img 
+          src="/hero-bg.png" 
+          alt="iPhone 17 and Samsung S25 background" 
+          className="w-full h-full object-cover opacity-60 mix-blend-screen"
+        />
+        <div className="absolute inset-0 bg-gradient-to-b from-background/40 via-background/60 to-background" />
+      </div>
       {/* Ambient glow orbs */}
       <div className="absolute top-1/4 -left-32 w-96 h-96 rounded-full bg-primary/20 blur-[120px]" />
       <div className="absolute bottom-1/4 -right-32 w-96 h-96 rounded-full bg-secondary/20 blur-[120px]" />
@@ -61,21 +74,7 @@ const HeroSection = () => {
           </div>
         </motion.div>
 
-        {/* Floating phone mockups */}
-        <motion.div
-          animate={{ y: [0, -10, 0] }}
-          transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
-          className="mt-16 flex justify-center"
-        >
-          <div className="relative w-64 h-64 md:w-80 md:h-80">
-            <div className="absolute inset-0 rounded-3xl gradient-bg opacity-20 blur-2xl" />
-            <img
-              src="https://images.unsplash.com/photo-1695048133142-1a20484d2569?w=400&h=400&fit=crop"
-              alt="Featured smartphone"
-              className="relative rounded-3xl w-full h-full object-cover border border-glass"
-            />
-          </div>
-        </motion.div>
+
       </div>
     </section>
   );
